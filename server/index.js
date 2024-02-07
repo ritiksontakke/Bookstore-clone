@@ -48,7 +48,9 @@ async function run() {
           })
 
           // update a book data : patch or update methods
-          
+          app.patch("/book/:id", async (req, res)=>{
+            const id = req.params.id;
+          })          
 
 
     // Send a ping to confirm a successful connection
