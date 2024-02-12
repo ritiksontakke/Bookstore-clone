@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 //mongobd is not available
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = "mongodb+srv://mern-bookstore:Ritik@ritik.e6pldoe.mongodb.net/?retryWrites=true&w=majority";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -50,7 +50,18 @@ async function run() {
           // update a book data : patch or update methods
           app.patch("/book/:id", async (req, res)=>{
             const id = req.params.id;
-            console.log(id)
+            // console.log(id)
+            const updateBookData =req.body;
+            const filter = {_id: new ObjectId(id) };
+            const options = { upsert:true };
+
+            const updateDate = {
+              $set:{
+                ...updateBookData
+              }
+            }
+
+             //
           })          
 
 
