@@ -61,7 +61,9 @@ async function run() {
               }
             }
 
-             //
+             //update
+             const result = await bookCollections.updateOne(filter,updateDate,options)
+             res.send(result)
           })          
 
 
