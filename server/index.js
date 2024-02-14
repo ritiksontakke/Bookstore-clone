@@ -40,12 +40,12 @@ async function run() {
         res.send(result);
       })
 
-       //get all books from the database 
-          app.get("/all-books",async(req,res) =>{
-            const books = await bookCollections.find();
-            const result = await books.toArray();
-            res.send(result);
-          })
+      //  //get all books from the database 
+      //     app.get("/all-books",async(req,res) =>{
+      //       const books = await bookCollections.find();
+      //       const result = await books.toArray();
+      //       res.send(result);
+      //     })
 
           // update a book data : patch or update methods
           app.patch("/book/:id", async (req, res)=>{
@@ -65,6 +65,23 @@ async function run() {
              const result = await bookCollections.updateOne(filter,updateDate,options)
              res.send(result)
           })          
+          
+          //delete a book data
+          app.delete("/book/:id", async(req, res)=> {
+            const id = req.params.id;
+            const filter = {_id: new ObjectId(id) };
+            const result = await bookCollections.deleteOne(filter);
+            res.send(result);
+          })
+            //find by catergory
+            app.get("/all-books",async(req, res)=>{
+              let query = {};
+              if(req.query?.category ){
+                query = {category: req.query.category}
+              }
+              const result = await bookCollections.find(query).toArray();
+              res.send(result);
+            })
 
 
     // Send a ping to confirm a successful connection
