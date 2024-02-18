@@ -45,7 +45,7 @@ async function run() {
       //       const books = await bookCollections.find();
       //       const result = await books.toArray();
       //       res.send(result);
-      //     })
+      //     }) //
 
           // update a book data : patch or update methods
           app.patch("/book/:id", async (req, res)=>{
