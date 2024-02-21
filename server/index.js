@@ -73,7 +73,7 @@ async function run() {
             const result = await bookCollections.deleteOne(filter);
             res.send(result);
           })
-            //find by catergory
+            //find by catergoryy
             app.get("/all-books",async(req, res)=>{
               let query = {};
               if(req.query?.category ){
